@@ -222,51 +222,57 @@ export function PageAccueilComponent() {
                 {appartements.map((appartement) => (
                   <CarouselItem key={appartement.id}>
                     <div className="p-1">
-                      <Card>
-                        <CardContent className="flex aspect-[4/3] items-center justify-center p-6">
-                          <Image
+                      <Card className="relative overflow-hidden">
+                        <CardContent className="p-0">
+                          <img
                             src={appartement.image}
                             alt={appartement.nom}
                             width={400}
                             height={300}
-                            className="w-full h-full object-cover rounded-md"
+                            className="w-full h-[500px] object-cover"
                           />
-                        </CardContent>
-                        <CardFooter className="flex flex-col items-start">
-                          <CardTitle>{appartement.nom}</CardTitle>
-                          <CardDescription>
-                            {appartement.description}
-                          </CardDescription>
-                          <p className="text-lg font-bold mt-2 text-purple-600">
-                            {appartement.prix}
-                          </p>
-                          <div className="flex items-center mt-2 space-x-2 text-sm text-gray-500">
-                            <div className="flex items-center">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`w-4 h-4 ${
-                                    i < Math.floor(appartement.note)
-                                      ? "text-yellow-400 fill-yellow-400"
-                                      : "text-gray-300"
-                                  }`}
-                                />
-                              ))}
+                          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
+                            <CardTitle className="text-white mb-2">
+                              {appartement.nom}
+                            </CardTitle>
+                            <CardDescription className="text-gray-200 mb-2">
+                              {appartement.description}
+                            </CardDescription>
+                            <p className="text-lg font-bold mb-2 text-purple-300">
+                              {appartement.prix}
+                            </p>
+                            <div className="flex items-center mb-2 space-x-2 text-sm text-gray-300">
+                              <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star
+                                    key={i}
+                                    className={`w-4 h-4 ${
+                                      i < Math.floor(appartement.note)
+                                        ? "text-yellow-400 fill-yellow-400"
+                                        : "text-gray-500"
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                              <span>{appartement.note.toFixed(1)}</span>
                             </div>
-                            <span>{appartement.note.toFixed(1)}</span>
+                            <div className="flex items-center mb-2 space-x-2 text-sm text-gray-300">
+                              <Wifi className="w-4 h-4" />
+                              <span>Wi-Fi Gratuit</span>
+                              <Users className="w-4 h-4 ml-2" />
+                              <span>2-4 Personnes</span>
+                            </div>
+                            <Button
+                              variant="outline"
+                              asChild
+                              className="mt-2 w-full"
+                            >
+                              <Link href={`/appartements/${appartement.id}`}>
+                                Voir les détails
+                              </Link>
+                            </Button>
                           </div>
-                          <div className="flex items-center mt-2 space-x-2 text-sm text-gray-500">
-                            <Wifi className="w-4 h-4" />
-                            <span>Wi-Fi Gratuit</span>
-                            <Users className="w-4 h-4 ml-2" />
-                            <span>2-4 Personnes</span>
-                          </div>
-                          <Button asChild className="mt-4">
-                            <Link href={`/appartements/${appartement.id}`}>
-                              Voir les détails
-                            </Link>
-                          </Button>
-                        </CardFooter>
+                        </CardContent>
                       </Card>
                     </div>
                   </CarouselItem>
