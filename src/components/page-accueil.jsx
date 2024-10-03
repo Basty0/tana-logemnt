@@ -229,7 +229,7 @@ export function PageAccueilComponent() {
                             alt={appartement.nom}
                             width={400}
                             height={300}
-                            className="w-full h-[500px] object-cover"
+                            className="w-full h-[600px] object-cover"
                           />
                           <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4">
                             <CardTitle className="text-white mb-2">
